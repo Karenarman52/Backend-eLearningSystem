@@ -1,9 +1,11 @@
 package eLearn.demo.topic;
 
+import eLearn.demo.subtopic.Subtopic;
 import eLearn.demo.module.Module;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "topic")
@@ -13,6 +15,8 @@ public class Topic {
     @Column(name = "topic_id",nullable = false,unique = true)
     private Long topicId;
 
+
+
     @Column(name = "topic_name",nullable = false)
     private String topicName;
 
@@ -21,6 +25,9 @@ public class Topic {
     @ManyToOne
     @JoinColumn(name = "module_id", referencedColumnName = "module_id", nullable = false)
     private Module module;
+
+    @OneToMany(mappedBy = "topic")
+    private List<Subtopic> contenttopics;
 
     @Column(name = "registedDate", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date registedDate;
@@ -70,20 +77,20 @@ public class Topic {
         this.topicDescription = topicDescription;
     }
 
-    public Date getRegistedDate() {
-        return registedDate;
-    }
-
-    public void setRegistedDate(Date registedDate) {
-        this.registedDate = registedDate;
-    }
-
     public Module getModule() {
         return module;
     }
 
     public void setModule(Module module) {
         this.module = module;
+    }
+
+    public Date getRegistedDate() {
+        return registedDate;
+    }
+
+    public void setRegistedDate(Date registedDate) {
+        this.registedDate = registedDate;
     }
 
     @Override

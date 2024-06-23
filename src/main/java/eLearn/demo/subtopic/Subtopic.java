@@ -12,8 +12,12 @@ public class Subtopic {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "subtopic_id",nullable = false,unique = true)
     private Long subtopicId;
+
     @Column(name = "subtopic_name",nullable = false)
     private String subtopicName;
+    @Column(name="filePath",nullable = true)
+    private String filePath;
+
 
     @Column(name = "subtopic_description",nullable = true)
     private String subtopicDescription;
@@ -33,16 +37,18 @@ public class Subtopic {
     public Subtopic() {
     }
 
-    public Subtopic(Long subtopicId, String subtopicName, String subtopicDescription, Topic topic, Date registeredDate) {
+    public Subtopic(Long subtopicId, String url, String subtopicName, String filePath, String subtopicDescription, Topic topic, Date registeredDate) {
         this.subtopicId = subtopicId;
         this.subtopicName = subtopicName;
+        this.filePath = filePath;
         this.subtopicDescription = subtopicDescription;
         this.topic = topic;
         this.registeredDate = registeredDate;
     }
 
-    public Subtopic(String subtopicName, String subtopicDescription, Topic topic, Date registeredDate) {
+    public Subtopic(String url, String subtopicName, String filePath, String subtopicDescription, Topic topic, Date registeredDate) {
         this.subtopicName = subtopicName;
+        this.filePath = filePath;
         this.subtopicDescription = subtopicDescription;
         this.topic = topic;
         this.registeredDate = registeredDate;
@@ -56,12 +62,22 @@ public class Subtopic {
         this.subtopicId = subtopicId;
     }
 
+
+
     public String getSubtopicName() {
         return subtopicName;
     }
 
     public void setSubtopicName(String subtopicName) {
         this.subtopicName = subtopicName;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
     }
 
     public String getSubtopicDescription() {
@@ -90,12 +106,14 @@ public class Subtopic {
 
     @Override
     public String toString() {
-        return "Subtopic{" +
+        return "Contenttopic{" +
                 "subtopicId=" + subtopicId +
                 ", subtopicName='" + subtopicName + '\'' +
+                ", filePath='" + filePath + '\'' +
                 ", subtopicDescription='" + subtopicDescription + '\'' +
                 ", topic=" + topic +
                 ", registeredDate=" + registeredDate +
                 '}';
     }
 }
+
